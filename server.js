@@ -11,7 +11,7 @@ const adminRouter = require("./routes/adminRouter");
 const userRouter = require("./routes/userRouter");
 
 const PORT = process.env.PORT || 3000;
-const LOCAL_STR = "mongodb://127.0.0.1:27017/mydb"
+const MongoDb = process.env.MongoDb
 
 app.use(nocache());
 app.use(cookieParser());
@@ -31,7 +31,7 @@ app.use(
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
 
-const db = mongoose.connect(LOCAL_STR);
+const db = mongoose.connect(MongoDb);
 
 app.get("/", (req, res) => {
   if (req.session.user) {
